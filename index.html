@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070707" />
+  <meta name="description" content="DA'POR Millionaires — refined American luxury streetwear in black, ivory, and gold." />
+  <title>DA'POR Millionaires — Built for Legacy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=6" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="announcement"><span>Complimentary U.S. shipping on orders $150+</span><span>Members receive early access</span></div>
+
+  <header class="site-header" id="top">
+    <button class="icon-button menu-button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#new">New arrivals</a><a href="#collection">Collection</a><a href="#story">Our story</a>
+    </nav>
+    <a class="brand" href="#top" aria-label="DA'POR Millionaires home"><img src="assets/dapor-logo-transparent.png" alt="DA'POR Millionaires" /></a>
+    <div class="header-actions">
+      <button class="icon-button search-button" aria-label="Search products"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg></button>
+      <button class="icon-button account-button" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21c.8-4.2 3.3-6.3 7.5-6.3s6.7 2.1 7.5 6.3"></path></svg></button>
+      <button class="icon-button cart-button" aria-label="Open shopping bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span class="cart-count">0</span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <button class="menu-close" aria-label="Close menu">×</button>
+    <a href="#new">New arrivals</a><a href="#collection">Shop collection</a><a href="#story">Our story</a><a href="#reviews">Reviews</a>
+    <span>American legacy. Modern uniform.</span>
+  </div>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-photo" src="assets/dapor-hero-campaign.webp" alt="DA’POR models wearing branded black and ivory tracksuits">
+      <div class="hero-shade"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow">American legacy</p>
+        <h1 id="hero-title">Built for<br>legacy.</h1>
+        <p class="hero-copy">Premium streetwear for those building something that lasts.</p>
+        <div class="hero-ctas"><a class="button gold" href="#new">Shop the collection</a></div>
+      </div>
+    </section>
+
+    <section class="category-strip" aria-label="Shop by category">
+      <a href="#new" data-shop-filter="all" style="--category-image:url('assets/dapor-hero-campaign.webp')"><img src="assets/dapor-hero-campaign.webp" alt="DA’POR coordinated tracksuits"><span>Tracksuits</span></a>
+      <a href="#new" data-shop-filter="black" style="--category-image:url('assets/dapor-black-tracksuit.webp')"><img src="assets/dapor-black-tracksuit.webp" alt="DA’POR black crest hoodie"><span>Hoodies</span></a>
+      <a href="#new" data-shop-filter="ivory" style="--category-image:url('assets/dapor-ivory-tracksuit.webp')"><img src="assets/dapor-ivory-tracksuit.webp" alt="DA’POR ivory layered jacket"><span>Jackets</span></a>
+      <a href="#new" data-shop-filter="sets" style="--category-image:url('assets/dapor-black-tracksuit.webp')"><img src="assets/dapor-black-tracksuit.webp" alt="DA’POR branded black trousers"><span>Trousers</span></a>
+      <a href="#new" data-shop-filter="sets" style="--category-image:url('assets/dapor-hero-campaign.webp')"><img src="assets/dapor-hero-campaign.webp" alt="DA’POR black and ivory matching sets"><span>Matching sets</span></a>
+    </section>
+
+    <section class="trust-strip" aria-label="Shopping benefits">
+      <span>Premium-weight materials</span><b>◆</b><span>Complimentary shipping $150+</span><b>◆</b><span>Easy 30-day returns</span><b>◆</b><span>Secure checkout</span>
+    </section>
+
+    <section class="collection section" id="new">
+      <div class="section-heading reveal">
+        <div><p class="eyebrow dark">The first edition</p><h2>New arrivals</h2></div>
+        <p>Designed as a complete wardrobe. Every piece carries the same disciplined palette and understated finish.</p>
+      </div>
+      <div class="filter-row reveal" role="group" aria-label="Filter products">
+        <button class="filter active" data-filter="all">All</button><button class="filter" data-filter="black">Black</button><button class="filter" data-filter="ivory">Ivory</button><button class="filter" data-filter="sets">Sets</button><button class="filter" data-filter="accessories">Accessories</button>
+        <span class="product-total">6 pieces</span>
+      </div>
+      <div class="product-grid" id="collection"></div>
+    </section>
+
+    <section class="stream-section" aria-label="DA’POR collection in motion">
+      <div class="stream-copy"><p class="eyebrow">The collection in motion</p><h2>Black. Ivory.<br>Always DA’POR.</h2></div>
+      <div class="corridor" aria-hidden="true"><div class="stream stream-left"></div><div class="stream stream-right"></div></div>
+    </section>
+
+    <section class="manifesto" id="story">
+      <div class="manifesto-image reveal"><img src="assets/dapor-ivory-tracksuit.webp" alt="Model wearing a branded DA’POR ivory tracksuit" loading="lazy"></div>
+      <div class="manifesto-copy reveal">
+        <p class="eyebrow">The house code</p>
+        <h2>Not made for a moment.<br><em>Made for your name.</em></h2>
+        <p>DA’POR is a uniform for ambition—modern silhouettes, weighty fabrics and gold details that speak without shouting. Each limited release is designed to move together and age with character.</p>
+        <a class="text-link light" href="#new">Enter the collection <span>↗</span></a>
+      </div>
+      <div class="crest-mark" aria-hidden="true">D’P</div>
+    </section>
+
+    <section class="lookbook section">
+      <div class="section-heading reveal"><div><p class="eyebrow dark">Styled three ways</p><h2>The uniform, in motion</h2></div><p>Build the set or make a statement with one signature layer.</p></div>
+      <div class="lookbook-track" aria-label="Lookbook carousel">
+        <article class="look-card onyx"><img src="assets/dapor-black-tracksuit.webp" alt="Model in a branded black DA’POR tracksuit" loading="lazy"><div><span>01 / Onyx</span><strong>After-dark structure</strong></div></article>
+        <article class="look-card featured"><img src="assets/dapor-ivory-tracksuit.webp" alt="Model in a branded ivory DA’POR tracksuit" loading="lazy"><div><span>02 / Ivory</span><strong>Monochrome ease</strong></div></article>
+        <article class="look-card founders"><img src="assets/dapor-hero-campaign.webp" alt="Models in coordinated DA’POR looks" loading="lazy"><div><span>03 / Founders</span><strong>Built together</strong></div></article>
+      </div>
+    </section>
+
+    <section class="reviews section" id="reviews">
+      <div class="reviews-intro reveal"><p class="eyebrow dark">Worn with conviction</p><h2>From the<br>DA’POR circle.</h2><div class="rating-big">4.9 <span>★★★★★</span><small>Based on verified orders</small></div></div>
+      <div class="review-stage reveal">
+        <button class="review-arrow prev" aria-label="Previous review">←</button>
+        <div class="review-card">
+          <div class="review-avatars">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marcus customer portrait">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Aaliyah customer portrait">
+            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Jordan customer portrait">
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <blockquote>“The weight and finish feel exceptional. It has the presence of a luxury piece, but I can actually live in it.”</blockquote>
+          <p><strong>Marcus T.</strong><span>Verified buyer · Black Legacy Bomber</span></p>
+        </div>
+        <button class="review-arrow next" aria-label="Next review">→</button>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div><p class="eyebrow">Private access</p><h2>Join the legacy.</h2></div>
+      <form id="newsletter-form"><label for="email">Email address</label><div><input id="email" type="email" placeholder="you@example.com" required><button type="submit">Join the circle <span>→</span></button></div><p>First access to limited drops. 10% off your first order.</p></form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><img src="assets/dapor-logo-transparent.png" alt="DA'POR Millionaires"><p>American legacy.<br>Modern uniform.</p></div>
+    <div><h3>Shop</h3><a href="#new">New arrivals</a><a href="#collection">Black collection</a><a href="#collection">Ivory collection</a><a href="#collection">Accessories</a></div>
+    <div><h3>Customer care</h3><a href="#">Shipping & delivery</a><a href="#">Returns & exchanges</a><a href="#">Size guide</a><a href="mailto:hello@dapor.com">Contact us</a></div>
+    <div><h3>Follow DA’POR</h3><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">TikTok</a><p class="copyright">© 2026 DA’POR Millionaires</p></div>
+    <div class="footer-payments" aria-label="Accepted payment methods">
+      <div><h3>Accepted payments</h3><p>Secure, encrypted checkout</p></div>
+      <div class="payment-icons">
+        <span class="pay visa" aria-label="Visa">VISA</span>
+        <span class="pay mastercard" aria-label="Mastercard"><i></i><i></i></span>
+        <span class="pay amex" aria-label="American Express">AMEX</span>
+        <span class="pay discover" aria-label="Discover">DISCOVER</span>
+        <span class="pay apple" aria-label="Apple Pay">● Pay</span>
+        <span class="pay gpay" aria-label="Google Pay"><b>G</b> Pay</span>
+        <span class="pay paypal" aria-label="PayPal">PayPal</span>
+        <span class="pay shoppay" aria-label="Shop Pay">shop Pay</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="search-panel" aria-hidden="true"><button class="panel-close" aria-label="Close search">×</button><p class="eyebrow">Find your piece</p><div><input type="search" placeholder="Search the collection" aria-label="Search the collection"><button>Search</button></div></div>
+  <div class="overlay"></div>
+  <aside class="cart-drawer" aria-hidden="true" aria-labelledby="cart-title">
+    <div class="cart-head"><div><p class="eyebrow dark">Your selection</p><h2 id="cart-title">Shopping bag</h2></div><button class="cart-close" aria-label="Close shopping bag">×</button></div>
+    <div class="cart-items"><div class="empty-cart"><span>0</span><h3>Your bag is waiting.</h3><p>Explore the first DA’POR edition.</p><a href="#new" class="button black close-and-shop">Shop the drop</a></div></div>
+    <div class="cart-summary" hidden><div><span>Subtotal</span><strong class="subtotal">$0.00</strong></div><p>Shipping calculated at checkout.</p><button class="button gold checkout-button">Secure checkout</button><small>Encrypted checkout · Easy 30-day returns</small></div>
+  </aside>
+
+  <div class="checkout-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <button class="checkout-close" aria-label="Close checkout">×</button>
+    <div class="checkout-brand"><img src="assets/dapor-logo-transparent.png" alt=""><span>Secure checkout</span></div>
+    <div class="checkout-grid"><div><p class="eyebrow dark">Final step</p><h2 id="checkout-title">Delivery details</h2><form id="checkout-form"><label>Email<input type="email" required placeholder="you@example.com"></label><div class="field-pair"><label>First name<input required></label><label>Last name<input required></label></div><label>Street address<input required></label><div class="field-pair"><label>City<input required></label><label>ZIP code<input required></label></div><label>Card details<div class="card-field"><input required placeholder="Card number"><input required placeholder="MM / YY"><input required placeholder="CVC"></div></label><button class="button gold" type="submit">Complete order</button></form></div><div class="order-panel"><h3>Order summary</h3><div class="checkout-items"></div><div class="order-total"><span>Total</span><strong>$0.00</strong></div><p>Secure encrypted checkout</p></div></div>
+  </div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=6"></script>
+</body>
+</html>
