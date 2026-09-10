@@ -152,9 +152,10 @@
   <div class="checkout-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
     <button class="checkout-close" aria-label="Close checkout">×</button>
     <div class="checkout-brand"><img src="assets/dapor-logo-transparent.png" alt=""><span>Secure checkout</span></div>
-    <div class="checkout-grid"><div><p class="eyebrow dark">Final step</p><h2 id="checkout-title">Delivery details</h2><form id="checkout-form"><label>Email<input type="email" required placeholder="you@example.com"></label><div class="field-pair"><label>First name<input required></label><label>Last name<input required></label></div><label>Street address<input required></label><div class="field-pair"><label>City<input required></label><label>ZIP code<input required></label></div><label>Card details<div class="card-field"><input required placeholder="Card number"><input required placeholder="MM / YY"><input required placeholder="CVC"></div></label><button class="button gold" type="submit">Complete order</button></form></div><div class="order-panel"><h3>Order summary</h3><div class="checkout-items"></div><div class="order-total"><span>Total</span><strong>$0.00</strong></div><p>Secure encrypted checkout</p></div></div>
+    <div class="checkout-grid"><div><p class="eyebrow dark">Final step</p><h2 id="checkout-title">Delivery details</h2><form id="checkout-form"><label>Email<input name="email" type="email" required placeholder="you@example.com"></label><div class="field-pair"><label>First name<input name="firstName" required></label><label>Last name<input name="lastName" required></label></div><label>Street address<input name="address" required></label><div class="field-pair"><label>City<input name="city" required></label><label>ZIP code<input name="zip" required></label></div><div id="wallet-element" hidden></div><label>Card details<div class="card-field"><div id="card-number"></div><div id="card-expiry"></div><div id="card-cvc"></div></div></label><button class="button gold" type="submit">Complete order</button></form></div><div class="order-panel"><h3>Order summary</h3><div class="checkout-items"></div><div class="order-total"><span>Total</span><strong>$0.00</strong></div><p>Secure encrypted checkout</p></div></div>
   </div>
   <div class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=6"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
