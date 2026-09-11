@@ -9,20 +9,112 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=15" />
+  <style>
+    @media (max-width: 900px) {
+      .hero {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        aspect-ratio: auto !important;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: #050505;
+      }
+      .hero-photo {
+        position: relative !important;
+        inset: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        object-position: center center !important;
+        display: block;
+      }
+      .hero-shade {
+        display: none;
+      }
+      .hero:after {
+        background: linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(5,5,5,.42) 58%, #050505 100%);
+      }
+      .hero-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        max-width: none !important;
+        width: auto;
+        padding: 24px 7vw 42px;
+        margin-top: -72px;
+        z-index: 5;
+      }
+      .hero h1 {
+        white-space: normal !important;
+        font-size: clamp(48px, 12vw, 76px);
+        line-height: .88;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero { height: auto !important; min-height: 0 !important; }
+      .hero-photo { object-fit: contain !important; object-position: center center !important; }
+      .hero-content {
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        padding: 18px 7vw 36px;
+        margin-top: -56px;
+      }
+      .hero h1 {
+        white-space: normal !important;
+        font-size: clamp(42px, 12vw, 56px);
+        line-height: .88;
+      }
+    }
+    @media (min-width: 901px) {
+      .site-header {
+        height: 80px !important;
+        max-height: 80px !important;
+        overflow: hidden !important;
+      }
+      .site-header .brand,
+      .site-header .header-crest {
+        width: 64px !important;
+        height: 64px !important;
+        max-width: 64px !important;
+        max-height: 64px !important;
+        overflow: hidden !important;
+        position: relative !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+      }
+      .site-header .brand img,
+      .site-header .header-crest img {
+        width: 86% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: contain !important;
+        display: block !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
   <div class="announcement"><span>Complimentary U.S. shipping on orders $150+</span><span>Members receive early access</span></div>
 
-  <header class="site-header" id="top">
+  <header class="site-header" id="top" style="overflow:hidden;max-height:80px">
     <button class="icon-button menu-button" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span>
     </button>
     <nav class="desktop-nav" aria-label="Main navigation">
       <a href="#new">New arrivals</a><a href="#collection">Collection</a><a href="#story">Our story</a>
     </nav>
-    <a class="brand" href="#top" aria-label="DA'POR Millionaires home"><img src="assets/dapor-logo-transparent.png" alt="DA'POR Millionaires" /></a>
+    <a class="brand header-crest" href="#top" aria-label="DA'POR Millionaires home"><img src="assets/dapor-logo-transparent.png" alt="DA'POR Millionaires" /></a>
     <div class="header-actions">
       <button class="icon-button search-button" aria-label="Search products"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg></button>
       <button class="icon-button account-button" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21c.8-4.2 3.3-6.3 7.5-6.3s6.7 2.1 7.5 6.3"></path></svg></button>
@@ -38,7 +130,7 @@
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="assets/dapor-hero-campaign.webp" alt="DA’POR models wearing branded black and ivory tracksuits">
+      <img class="hero-photo" src="assets/dapor-hero-campaign.webp" alt="DA’POR models wearing branded black and ivory tracksuits" onerror="this.onerror=null;this.src='assets/dapor-hero-campaign.png'">
       <div class="hero-shade"></div>
       <div class="hero-content reveal">
         <p class="eyebrow">American legacy</p>
@@ -49,11 +141,11 @@
     </section>
 
     <section class="category-strip" aria-label="Shop by category">
-      <a href="#new" data-shop-filter="all" style="--category-image:url('assets/dapor-hero-campaign.webp')"><img src="assets/dapor-hero-campaign.webp" alt="DA’POR coordinated tracksuits"><span>Tracksuits</span></a>
-      <a href="#new" data-shop-filter="black" style="--category-image:url('assets/dapor-black-tracksuit.webp')"><img src="assets/dapor-black-tracksuit.webp" alt="DA’POR black crest hoodie"><span>Hoodies</span></a>
-      <a href="#new" data-shop-filter="ivory" style="--category-image:url('assets/dapor-ivory-tracksuit.webp')"><img src="assets/dapor-ivory-tracksuit.webp" alt="DA’POR ivory layered jacket"><span>Jackets</span></a>
-      <a href="#new" data-shop-filter="sets" style="--category-image:url('assets/dapor-black-tracksuit.webp')"><img src="assets/dapor-black-tracksuit.webp" alt="DA’POR branded black trousers"><span>Trousers</span></a>
-      <a href="#new" data-shop-filter="sets" style="--category-image:url('assets/dapor-hero-campaign.webp')"><img src="assets/dapor-hero-campaign.webp" alt="DA’POR black and ivory matching sets"><span>Matching sets</span></a>
+      <a href="#new" data-shop-filter="all" style="--category-image:url('assets/dapor-hero-campaign.webp')"><img src="assets/dapor-hero-campaign.webp" alt="DA’POR coordinated tracksuits" onerror="this.onerror=null;this.src='assets/dapor-hero-campaign.png'"><span>Tracksuits</span></a>
+      <a href="#new" data-shop-filter="black" style="--category-image:url('assets/dapor-black-tracksuit.webp')"><img src="assets/dapor-black-tracksuit.webp" alt="DA’POR black crest hoodie" onerror="this.onerror=null;this.src='assets/dapor-black-tracksuit.png'"><span>Hoodies</span></a>
+      <a href="#new" data-shop-filter="ivory" style="--category-image:url('assets/dapor-ivory-tracksuit.webp')"><img src="assets/dapor-ivory-tracksuit.webp" alt="DA’POR ivory layered jacket" onerror="this.onerror=null;this.src='assets/dapor-ivory-tracksuit.png'"><span>Jackets</span></a>
+      <a href="#new" data-shop-filter="sets" style="--category-image:url('assets/dapor-black-tracksuit.webp')"><img src="assets/dapor-black-tracksuit.webp" alt="DA’POR branded black trousers" onerror="this.onerror=null;this.src='assets/dapor-black-tracksuit.png'"><span>Trousers</span></a>
+      <a href="#new" data-shop-filter="sets" style="--category-image:url('assets/dapor-hero-campaign.webp')"><img src="assets/dapor-hero-campaign.webp" alt="DA’POR black and ivory matching sets" onerror="this.onerror=null;this.src='assets/dapor-hero-campaign.png'"><span>Matching sets</span></a>
     </section>
 
     <section class="trust-strip" aria-label="Shopping benefits">
@@ -67,7 +159,7 @@
       </div>
       <div class="filter-row reveal" role="group" aria-label="Filter products">
         <button class="filter active" data-filter="all">All</button><button class="filter" data-filter="black">Black</button><button class="filter" data-filter="ivory">Ivory</button><button class="filter" data-filter="sets">Sets</button><button class="filter" data-filter="accessories">Accessories</button>
-        <span class="product-total">6 pieces</span>
+        <span class="product-total">13 pieces</span>
       </div>
       <div class="product-grid" id="collection"></div>
     </section>
@@ -78,7 +170,7 @@
     </section>
 
     <section class="manifesto" id="story">
-      <div class="manifesto-image reveal"><img src="assets/dapor-ivory-tracksuit.webp" alt="Model wearing a branded DA’POR ivory tracksuit" loading="lazy"></div>
+      <div class="manifesto-image reveal"><img src="assets/dapor-ivory-tracksuit.webp" alt="Model wearing a branded DA’POR ivory tracksuit" loading="lazy" onerror="this.onerror=null;this.src='assets/dapor-ivory-tracksuit.png'"></div>
       <div class="manifesto-copy reveal">
         <p class="eyebrow">The house code</p>
         <h2>Not made for a moment.<br><em>Made for your name.</em></h2>
@@ -91,9 +183,9 @@
     <section class="lookbook section">
       <div class="section-heading reveal"><div><p class="eyebrow dark">Styled three ways</p><h2>The uniform, in motion</h2></div><p>Build the set or make a statement with one signature layer.</p></div>
       <div class="lookbook-track" aria-label="Lookbook carousel">
-        <article class="look-card onyx"><img src="assets/dapor-black-tracksuit.webp" alt="Model in a branded black DA’POR tracksuit" loading="lazy"><div><span>01 / Onyx</span><strong>After-dark structure</strong></div></article>
-        <article class="look-card featured"><img src="assets/dapor-ivory-tracksuit.webp" alt="Model in a branded ivory DA’POR tracksuit" loading="lazy"><div><span>02 / Ivory</span><strong>Monochrome ease</strong></div></article>
-        <article class="look-card founders"><img src="assets/dapor-hero-campaign.webp" alt="Models in coordinated DA’POR looks" loading="lazy"><div><span>03 / Founders</span><strong>Built together</strong></div></article>
+        <article class="look-card onyx"><img src="assets/dapor-black-tracksuit.webp" alt="Model in a branded black DA’POR tracksuit" loading="lazy" onerror="this.onerror=null;this.src='assets/dapor-black-tracksuit.png'"><div><span>01 / Onyx</span><strong>After-dark structure</strong></div></article>
+        <article class="look-card featured"><img src="assets/dapor-ivory-tracksuit.webp" alt="Model in a branded ivory DA’POR tracksuit" loading="lazy" onerror="this.onerror=null;this.src='assets/dapor-ivory-tracksuit.png'"><div><span>02 / Ivory</span><strong>Monochrome ease</strong></div></article>
+        <article class="look-card founders"><img src="assets/dapor-hero-campaign.webp" alt="Models in coordinated DA’POR looks" loading="lazy" onerror="this.onerror=null;this.src='assets/dapor-hero-campaign.png'"><div><span>03 / Founders</span><strong>Built together</strong></div></article>
       </div>
     </section>
 
@@ -152,10 +244,11 @@
   <div class="checkout-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
     <button class="checkout-close" aria-label="Close checkout">×</button>
     <div class="checkout-brand"><img src="assets/dapor-logo-transparent.png" alt=""><span>Secure checkout</span></div>
-    <div class="checkout-grid"><div><p class="eyebrow dark">Final step</p><h2 id="checkout-title">Delivery details</h2><form id="checkout-form"><label>Email<input name="email" type="email" required placeholder="you@example.com"></label><div class="field-pair"><label>First name<input name="firstName" required></label><label>Last name<input name="lastName" required></label></div><label>Street address<input name="address" required></label><div class="field-pair"><label>City<input name="city" required></label><label>ZIP code<input name="zip" required></label></div><div id="wallet-element" hidden></div><label>Card details<div class="card-field"><div id="card-number"></div><div id="card-expiry"></div><div id="card-cvc"></div></div></label><button class="button gold" type="submit">Complete order</button></form></div><div class="order-panel"><h3>Order summary</h3><div class="checkout-items"></div><div class="order-total"><span>Total</span><strong>$0.00</strong></div><p>Secure encrypted checkout</p></div></div>
+    <div class="checkout-grid"><div><p class="eyebrow dark">Final step</p><h2 id="checkout-title">Pay with Stripe</h2><form id="checkout-form"><label>Email (optional)<input type="email" name="email" placeholder="you@example.com" autocomplete="email"></label><p class="stripe-note">Card numbers never touch this site. Stripe collects payment, shipping and billing on their encrypted checkout.</p><p class="stripe-methods">Visa · Mastercard · Amex · Discover · Apple Pay · Google Pay · Link</p><button class="button gold stripe-pay-button" type="submit">Pay securely with Stripe</button></form></div><div class="order-panel"><h3>Order summary</h3><div class="checkout-items"></div><div class="order-total"><span>Total</span><strong>$0.00</strong></div><p>Hosted by Stripe · Encrypted checkout</p></div></div>
   </div>
   <div class="toast" role="status" aria-live="polite"></div>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="app.js?v=7"></script>
+  <script src="catalog.js?v=9"></script>
+  <script src="stripe-checkout.js?v=9"></script>
+  <script src="app.js?v=9"></script>
 </body>
 </html>

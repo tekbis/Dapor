@@ -1,0 +1,15 @@
+module.exports = [
+  { id: 1, slug: "black-legacy-tracksuit", title: "Black Legacy Tracksuit", price: 168, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 2, slug: "ivory-heritage-tracksuit", title: "Ivory Heritage Tracksuit", price: 178, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL"], colors: ["Heritage Ivory", "Onyx Black"] },
+  { id: 3, slug: "onyx-crest-hoodie", title: "Onyx Crest Hoodie", price: 98, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 4, slug: "ivory-signature-hoodie", title: "Ivory Signature Hoodie", price: 108, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL"], colors: ["Heritage Ivory", "Onyx Black"] },
+  { id: 5, slug: "founders-crest-trousers", title: "Founders Crest Trousers", price: 88, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 6, slug: "heritage-bomber-set", title: "Heritage Bomber Set", price: 198, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL"], colors: ["Heritage Ivory", "Onyx Black"] },
+  { id: 7, slug: "legacy-crest-zip-jacket", title: "Legacy Crest Zip Jacket", price: 128, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 8, slug: "signature-relaxed-trousers", title: "Signature Relaxed Trousers", price: 92, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL"], colors: ["Heritage Ivory", "Onyx Black"] },
+  { id: 9, slug: "founders-heavyweight-tee", title: "Founders Heavyweight Tee", price: 68, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 10, slug: "eagle-crest-tee", title: "Eagle Crest Tee", price: 72, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL", "XXL"], colors: ["Heritage Ivory", "Onyx Black"] },
+  { id: 11, slug: "onyx-heritage-bomber", title: "Onyx Heritage Bomber", price: 138, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 12, slug: "ivory-crest-joggers", title: "Ivory Crest Joggers", price: 88, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL"], colors: ["Heritage Ivory", "Onyx Black"] },
+  { id: 13, slug: "millionaires-founders-set", title: "Millionaires Founders Set", price: 188, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+];

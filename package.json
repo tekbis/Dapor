@@ -1,7 +1,16 @@
 {
-  "name": "dapor-website",
+  "name": "dapor-millionaires",
   "private": true,
+  "version": "1.0.0",
+  "description": "DA’POR Millionaires storefront with Stripe Checkout",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
   "dependencies": {
-    "stripe": "^17.7.0"
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "stripe": "^18.5.0"
   }
 }
