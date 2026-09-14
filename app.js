@@ -42,7 +42,7 @@ function money(value) {
 
 function productCard(product) {
   return `
-    <article class="product-card reveal" data-cat="${product.cat}" data-url="${product.url}" tabindex="0" aria-label="View ${product.title}">
+    <article class="product-card reveal" data-cat="${product.cat}" data-photo="${product.photo || ""}" data-url="${product.url}" tabindex="0" aria-label="View ${product.title}">
       <div class="product-image">
         ${product.badge ? `<span class="badge">${product.badge}</span>` : ""}
         <button class="wishlist" aria-label="Add ${product.title} to wishlist" type="button">♡</button>

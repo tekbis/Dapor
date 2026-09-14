@@ -56,8 +56,10 @@ function productSlug() {
 }
 
 function galleryImages(product) {
+  const uniqueColorImages = new Set((product.colors || []).map((item) => item.image).filter(Boolean));
+  const swapGallery = uniqueColorImages.size > 1;
   return product.images.map((image, index) => (
-    index < 3 && selectedColorImage
+    swapGallery && index < 3 && selectedColorImage
       ? { ...image, src: selectedColorImage, alt: `${selectedColor || product.title} — ${image.alt}` }
       : image
   ));
@@ -174,6 +176,7 @@ function renderGallery() {
     mainImage.src = active.src;
     mainImage.alt = active.alt;
     mainImage.style.objectPosition = active.position;
+    mainImage.style.objectFit = active.fit || "contain";
     mainImage.style.transform = `scale(${active.zoom})`;
     mainImage.style.opacity = "1";
   }, 90);

@@ -12,4 +12,9 @@ module.exports = [
   { id: 11, slug: "onyx-heritage-bomber", title: "Onyx Heritage Bomber", price: 138, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
   { id: 12, slug: "ivory-crest-joggers", title: "Ivory Crest Joggers", price: 88, image: "dapor-ivory-tracksuit.webp", sizes: ["XS", "S", "M", "L", "XL"], colors: ["Heritage Ivory", "Onyx Black"] },
   { id: 13, slug: "millionaires-founders-set", title: "Millionaires Founders Set", price: 188, image: "dapor-black-tracksuit.webp", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Black", "Ivory"] },
+  { id: 14, slug: "district-26-zip-hoodie", title: "District 26 Zip Hoodie", price: 118, image: "dapor-district-hoodie-front-on-model.png", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Athletic Heather"] },
+  { id: 15, slug: "district-26-shorts", title: "District 26 Shorts", price: 78, image: "dapor-district-shorts-front-on-model.png", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Athletic Heather"] },
+  { id: 16, slug: "district-26-set", title: "District 26 Set", price: 178, image: "dapor-district-hoodie-front-on-model.png", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Athletic Heather"] },
+  { id: 17, slug: "onyx-gold-district-set", title: "Onyx Gold District Set", price: 188, image: "dapor-onyx-gold-set.jpg", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Gold"] },
+  { id: 18, slug: "onyx-scarlet-district-set", title: "Onyx Scarlet District Set", price: 188, image: "dapor-onyx-scarlet-set.jpg", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Onyx Scarlet"] },
 ];

@@ -52,16 +52,49 @@
     care: "Machine wash cold with like colors. Wash inside out. Do not bleach. Tumble dry low or air dry to preserve embroidery.",
   };
 
+  const shot = (src, alt, position = "center center", zoom = 1, fit) => ({
+    src,
+    alt,
+    position,
+    zoom,
+    ...(fit ? { fit } : {}),
+  });
+
+  const mockupViews = (src, name) => [
+    shot(src, `${name} full look`, "center center", 1),
+    shot(src, `${name} hoodie front`, "22% 18%", 2.08, "cover"),
+    shot(src, `${name} hoodie back`, "78% 18%", 2.08, "cover"),
+    shot(src, `${name} shorts`, "22% 82%", 2.08, "cover"),
+  ];
+
+  const HOODIE_FRONT = asset("dapor-district-hoodie-front.jpg");
+  const HOODIE_BACK = asset("dapor-district-hoodie-back.jpg");
+  const HOODIE_FRONT_MODEL = asset("dapor-district-hoodie-front-on-model.png");
+  const HOODIE_BACK_MODEL = asset("dapor-district-hoodie-back-on-model.png");
+  const SHORTS_FRONT = asset("dapor-district-shorts-front.jpg");
+  const SHORTS_FRONT_MODEL = asset("dapor-district-shorts-front-on-model.png");
+  const SHORTS_BACK = asset("dapor-district-shorts-back.jpg");
+  const SHORTS_DETAIL = asset("dapor-district-shorts-detail.jpg");
+  const SET_LOOK = asset("dapor-district-set-look.jpg");
+  const SET_DETAIL = asset("dapor-district-set-detail.jpg");
+  const SET_CAMPAIGN = asset("dapor-district-set-campaign.jpg");
+  const ONYX_GOLD = asset("dapor-onyx-gold-set.jpg");
+  const ONYX_SCARLET = asset("dapor-onyx-scarlet-set.jpg");
+
+  const heather = (image) => [color("Athletic Heather", "#d4cfc4", image)];
+  const goldSet = [color("Onyx Gold", "#0d7a7a", ONYX_GOLD)];
+  const scarletSet = [color("Onyx Scarlet", "#b91c1c", ONYX_SCARLET)];
+
   const makeProduct = (data) => {
-    const primary = data.tone === "ivory" ? IVORY : BLACK;
-    const colors = data.tone === "ivory" ? ivoryColors : blackColors;
+    const primary = data.img || (data.tone === "ivory" ? IVORY : BLACK);
+    const colors = data.colors || (data.tone === "ivory" ? ivoryColors : blackColors);
     return {
       ...defaults,
       ...data,
       img: primary,
-      images: imageSet(primary, data.tone === "ivory" ? "Ivory" : "Onyx"),
+      images: data.images || imageSet(primary, data.tone === "ivory" ? "Ivory" : "Onyx"),
       colors,
-      reviews: reviewPair(data.title, data.tone === "ivory" ? "ivory" : "black"),
+      reviews: data.reviews || reviewPair(data.title, data.tone === "ivory" ? "ivory" : "black"),
       url: productUrl(data.slug),
     };
   };
@@ -287,6 +320,131 @@
       fit: "Relaxed statement fit. Choose your regular size or size down for a closer silhouette.",
       info: ["Two-piece coordinated set", "Multi-density crest embroidery", "Double-layer hood", "Numbered edition label"],
       related: [1, 3, 6, 11],
+    }),
+    makeProduct({
+      id: 14,
+      slug: "district-26-zip-hoodie",
+      title: "District 26 Zip Hoodie",
+      desc: "Heather zip · American Legacy",
+      price: 118,
+      category: "Hoodies",
+      cat: "ivory",
+      badge: "New",
+      tone: "ivory",
+      photo: "hoodie",
+      edition: "District 26",
+      img: HOODIE_FRONT_MODEL,
+      images: [
+        shot(HOODIE_FRONT_MODEL, "District 26 zip hoodie on model", "center 18%", 1.05, "cover"),
+        shot(HOODIE_BACK_MODEL, "District 26 zip hoodie back on model", "center 18%", 1.05, "cover"),
+        shot(HOODIE_FRONT, "District 26 zip hoodie front detail", "center center", 1),
+        shot(HOODIE_BACK, "District 26 zip hoodie back crest detail", "center center", 1),
+      ],
+      colors: heather(HOODIE_FRONT_MODEL),
+      description:
+        "A cropped zip hoodie in athletic heather, built around the District 26 varsity language. Front lockup, rear eagle crest, and the 26 sleeve mark make it the signature layer of the new drop.",
+      material: "Heavyweight cotton-blend fleece with a washed heather face, contrast navy waistband, metal zip hardware and distressed athletic prints.",
+      fit: "Cropped zip fit with a clean shoulder and ribbed hem. Choose your usual size, or size up to layer over a tee.",
+      info: ["Full zip closure", "Rear eagle crest print", "Athletic 26 sleeve mark", "Kangaroo pocket"],
+      related: [15, 16, 17, 4],
+    }),
+    makeProduct({
+      id: 15,
+      slug: "district-26-shorts",
+      title: "District 26 Shorts",
+      desc: "Heather fleece · Crest 26",
+      price: 78,
+      category: "Shorts",
+      cat: "ivory accessories",
+      badge: "New",
+      tone: "ivory",
+      photo: "shorts",
+      edition: "District 26",
+      img: SHORTS_FRONT_MODEL,
+      images: [
+        shot(SHORTS_FRONT_MODEL, "District 26 shorts on model", "center 58%", 1.08, "cover"),
+        shot(HOODIE_BACK_MODEL, "District 26 set back on model", "center 62%", 1.08, "cover"),
+        shot(SHORTS_FRONT, "District 26 shorts front print detail", "center center", 1),
+        shot(SHORTS_BACK, "District 26 shorts back crest detail", "center center", 1),
+      ],
+      colors: heather(SHORTS_FRONT_MODEL),
+      description:
+        "Fleece shorts cut for movement, with the District crest and 26 mark across the leg and a clean back-print eagle. Navy inner waistband and white drawcords finish the athletic uniform.",
+      material: "Washed cotton-blend fleece with a contrast navy waistband, white drawcords, back patch pocket and distressed District prints.",
+      fit: "Relaxed athletic short with a comfortable rise. Use your usual size.",
+      info: ["Elasticated drawcord waist", "Back patch pocket", "District crest and 26 print", "Navy contrast waistband"],
+      related: [14, 16, 18, 8],
+    }),
+    makeProduct({
+      id: 16,
+      slug: "district-26-set",
+      title: "District 26 Set",
+      desc: "Zip hoodie · Matching shorts",
+      price: 178,
+      category: "Matching Sets",
+      cat: "ivory sets",
+      badge: "New",
+      tone: "ivory",
+      photo: "hoodie",
+      edition: "District 26",
+      img: HOODIE_FRONT_MODEL,
+      images: [
+        shot(HOODIE_FRONT_MODEL, "District 26 set on model", "center 22%", 1.04, "cover"),
+        shot(HOODIE_BACK_MODEL, "District 26 set back on model", "center 18%", 1.04, "cover"),
+        shot(SHORTS_FRONT_MODEL, "District 26 shorts on model", "center 58%", 1.06, "cover"),
+        shot(SET_LOOK, "District 26 campaign look", "center 28%", 1.08, "cover"),
+      ],
+      colors: heather(HOODIE_FRONT_MODEL),
+      description:
+        "The complete Athletic Heather uniform: cropped zip hoodie and matching District shorts, photographed as a full set. Varsity lockup, eagle crest and 26 marks run through both pieces.",
+      material: "Coordinated heavyweight cotton-blend fleece with washed heather face, contrast navy trims, metal zip hardware and distressed athletic prints.",
+      fit: "Cropped hoodie with relaxed athletic shorts. Choose your usual size for both pieces.",
+      info: ["Two-piece zip hoodie and shorts set", "Matching District 26 graphics", "Contrast navy trims", "White drawcords"],
+      related: [14, 15, 17, 18],
+    }),
+    makeProduct({
+      id: 17,
+      slug: "onyx-gold-district-set",
+      title: "Onyx Gold District Set",
+      desc: "Black hoodie · Teal and gold shorts",
+      price: 188,
+      category: "Matching Sets",
+      cat: "black sets",
+      badge: "New",
+      tone: "black",
+      photo: "pack",
+      edition: "District 26",
+      img: ONYX_GOLD,
+      images: mockupViews(ONYX_GOLD, "Onyx Gold District set"),
+      colors: goldSet,
+      description:
+        "The District uniform in onyx, finished with gold lockup type and teal lining. Zip hoodie and shorts share the eagle crest, 26 marks and Millionaires District banner.",
+      material: "Heavyweight cotton fleece with teal contrast lining, gold and teal athletic prints, drawcord shorts and metal zip hardware.",
+      fit: "Relaxed coordinated set. Choose your usual size, or size up for an easier streetwear silhouette.",
+      info: ["Two-piece hoodie and shorts set", "Gold and teal District graphics", "Contrast teal lining", "Rear eagle crest"],
+      related: [18, 16, 1, 13],
+    }),
+    makeProduct({
+      id: 18,
+      slug: "onyx-scarlet-district-set",
+      title: "Onyx Scarlet District Set",
+      desc: "Black hoodie · Scarlet and white shorts",
+      price: 188,
+      category: "Matching Sets",
+      cat: "black sets",
+      badge: "New",
+      tone: "black",
+      photo: "pack",
+      edition: "District 26",
+      img: ONYX_SCARLET,
+      images: mockupViews(ONYX_SCARLET, "Onyx Scarlet District set"),
+      colors: scarletSet,
+      description:
+        "Onyx fleece with scarlet varsity type, white sleeve stripes and a red-lined hood. The matching shorts carry the 26 mark, crest language and contrast side stripe.",
+      material: "Heavyweight cotton fleece with scarlet contrast lining, red and white athletic prints, drawcord shorts and metal zip hardware.",
+      fit: "Relaxed coordinated set. Choose your usual size, or size up for an easier streetwear silhouette.",
+      info: ["Two-piece hoodie and shorts set", "Scarlet District graphics", "Contrast red lining", "White side stripe"],
+      related: [17, 16, 1, 13],
     }),
   ];
 
