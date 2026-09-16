@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.css?v=31" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -38,9 +38,9 @@
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-photo" src="assets/district-grey-editorial.png" alt="Model wearing the heather-grey DA’POR District hoodie and graphic shorts in a bronze-and-stone doorway">
+      <img class="hero-photo" src="assets/district-hero-lobby.jpg" alt="Model wearing the heather-grey DA’POR District hoodie and graphic shorts in a marble lobby">
       <div class="hero-shade"></div>
-      <div class="hero-content reveal">
+      <div class="hero-content">
         <p class="eyebrow">American legacy</p>
         <h1 id="hero-title">Built for<br>legacy.</h1>
         <p class="hero-copy">Meet the District collection. Graphic zip hoodies and matching shorts, shown in three distinct colorways.</p>
@@ -49,7 +49,14 @@
     </section>
 
     <section class="trust-strip" aria-label="Shopping benefits">
-      <span>Original supplied artwork</span><b>◆</b><span>Complimentary U.S. shipping $150+</span><b>◆</b><span>Secure Stripe checkout</span><b>◆</b><span>Zip hoodies &amp; shorts</span>
+      <div class="trust-track">
+        <div class="trust-set">
+          <span>Original supplied artwork</span><b>◆</b><span>Complimentary U.S. shipping $150+</span><b>◆</b><span>Secure Stripe checkout</span><b>◆</b><span>Zip hoodies &amp; shorts</span>
+        </div>
+        <div class="trust-set" aria-hidden="true">
+          <span>Original supplied artwork</span><b>◆</b><span>Complimentary U.S. shipping $150+</span><b>◆</b><span>Secure Stripe checkout</span><b>◆</b><span>Zip hoodies &amp; shorts</span>
+        </div>
+      </div>
     </section>
 
     <section class="collection section" id="new">
@@ -107,16 +114,16 @@
     <div><h3>Follow DA’POR</h3><a href="https://www.instagram.com/_dapormillionaires_?stkn=MTZnanZidzc5cjBmOA==">Instagram</a><a href="https://www.facebook.com/share/1VdJMgWzP1/">Facebook</a><a href="#">TikTok</a><p class="copyright">© 2026 DA’POR Millionaires</p></div>
     <div class="footer-payments" aria-label="Accepted payment methods">
       <div><h3>Accepted payments</h3><p>Secure, encrypted Stripe checkout</p></div>
-      <div class="payment-icons">
-        <span class="pay visa" aria-label="Visa">VISA</span>
-        <span class="pay mastercard" aria-label="Mastercard"><i></i><i></i></span>
-        <span class="pay amex" aria-label="American Express">AMEX</span>
-        <span class="pay discover" aria-label="Discover">DISCOVER</span>
-        <span class="pay apple" aria-label="Apple Pay">● Pay</span>
-        <span class="pay gpay" aria-label="Google Pay"><b>G</b> Pay</span>
-        <span class="pay paypal" aria-label="PayPal">PayPal</span>
-        <span class="pay shoppay" aria-label="Shop Pay">shop Pay</span>
-      </div>
+      <ul class="accepted-pay">
+        <li class="pay-visa"><img src="assets/payments/visa.svg?v=24" alt="Visa"></li>
+        <li class="pay-mc"><img src="assets/payments/mastercard.svg?v=24" alt="Mastercard"></li>
+        <li class="pay-amex"><img src="assets/payments/amex.svg?v=24" alt="American Express"></li>
+        <li class="pay-disc"><img src="assets/payments/discover.svg?v=24" alt="Discover"></li>
+        <li class="pay-apple"><img src="assets/payments/apple-pay.svg?v=24" alt="Apple Pay"></li>
+        <li class="pay-gpay"><img src="assets/payments/google-pay.svg?v=24" alt="Google Pay"></li>
+        <li class="pay-pp"><img src="assets/payments/paypal.svg?v=24" alt="PayPal"></li>
+        <li class="pay-shop"><img src="assets/payments/shop-pay.svg?v=24" alt="Shop Pay"></li>
+      </ul>
     </div>
   </footer>
 
