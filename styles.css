@@ -397,34 +397,39 @@ footer .accepted-pay img{
   .hero-content .hero-ctas{animation:none}
 }
 
-.trust-track{display:flex;align-items:center;justify-content:center;width:100%;gap:32px}
-.trust-set{display:flex;align-items:center;gap:32px;white-space:nowrap}
-.trust-set+ .trust-set{display:none}
-@media(max-width:900px){
-  .trust-strip{
-    overflow:hidden;
-    justify-content:flex-start;
-    padding:0;
-  }
-  .trust-strip span:nth-of-type(n+3),
-  .trust-strip b:nth-of-type(n+3){display:inline !important}
-  .trust-track{
-    width:max-content;
-    justify-content:flex-start;
-    gap:0;
-    animation:trustMarquee 22s linear infinite;
-  }
-  .trust-set{
-    gap:18px;
-    padding:0 22px;
-    flex:0 0 auto;
-  }
-  .trust-set+ .trust-set{display:flex}
+.trust-strip{
+  overflow:hidden;
+  justify-content:flex-start;
+  padding:0;
 }
+.trust-track{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  width:max-content;
+  gap:0;
+  animation:trustMarquee 28s linear infinite;
+}
+.trust-set{
+  display:flex;
+  align-items:center;
+  gap:32px;
+  padding:0 32px;
+  white-space:nowrap;
+  flex:0 0 auto;
+}
+.trust-set+ .trust-set{display:flex}
+.trust-strip span:nth-of-type(n+3),
+.trust-strip b:nth-of-type(n+3){display:inline !important}
 @keyframes trustMarquee{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
 }
-@media(prefers-reduced-motion:reduce){
-  .trust-track{animation:none}
+@media(max-width:900px){
+  .trust-track{animation-duration:22s}
+  .trust-set{gap:18px;padding:0 22px}
+}
+.site-header .desktop-nav a{
+  font-size:13px;
+  letter-spacing:.1em;
 }
