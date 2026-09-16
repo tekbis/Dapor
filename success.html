@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=19" />
+  <link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body class="success-page">
   <div class="grain" aria-hidden="true"></div>
   <header class="site-header">
-    <a class="brand header-crest" href="index.html" aria-label="DA’POR Millionaires home"><img src="assets/dapor-logo-transparent.png" alt="DA’POR Millionaires" /></a>
+    <a class="brand" href="index.html" aria-label="DA’POR Millionaires home"><img src="assets/dapor-logo-transparent.png" alt="DA’POR Millionaires" /></a>
   </header>
   <main class="success-shell">
     <p class="eyebrow dark">Payment received</p>
@@ -22,21 +22,17 @@
     <p class="success-meta" id="success-meta"></p>
     <a class="button gold" href="index.html#new">Return to the collection</a>
   </main>
-  <script src="stripe-checkout.js?v=9"></script>
+  <script src="stripe-checkout.js?v=10"></script>
   <script>
     (function () {
       const copy = document.getElementById("success-copy");
       const meta = document.getElementById("success-meta");
-      const params = new URLSearchParams(window.location.search);
-      const sessionId = params.get("session_id") || "";
-
+      const sessionId = new URLSearchParams(window.location.search).get("session_id") || "";
       window.DAPOR_STRIPE.clearPaidCart();
-
       if (!sessionId) {
         copy.textContent = "Your bag has been cleared. If you completed payment, a receipt is on its way from Stripe.";
         return;
       }
-
       fetch(`/api/checkout-session?session_id=${encodeURIComponent(sessionId)}`)
         .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
         .then(({ ok, data }) => {

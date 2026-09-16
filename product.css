@@ -107,28 +107,15 @@
 .search-result span{font-size:10px;color:#746c61}
 .footer-size-guide{display:block;color:#b9b2a7;text-decoration:none;margin:0 0 11px;font-size:12px;text-align:left}
 .footer-size-guide:hover{color:#e0bd73}
-.size-guide-modal{width:min(1080px,calc(100% - 24px));max-height:92vh;overflow:auto;border:1px solid #b58a3d;background:#f4eee3;color:#16130f;padding:42px;box-shadow:0 26px 90px rgba(0,0,0,.42)}
+.size-guide-modal{width:min(720px,calc(100% - 32px));border:1px solid #b58a3d;background:#f4eee3;color:#16130f;padding:42px;box-shadow:0 26px 90px rgba(0,0,0,.42)}
 .size-guide-modal::backdrop{background:rgba(0,0,0,.76);backdrop-filter:blur(4px)}
 .size-guide-modal h2{font-size:55px}
 .size-guide-modal>p:not(.eyebrow){color:#675f55;line-height:1.6;font-size:13px}
 .size-guide-close{position:absolute;right:20px;top:14px;border:0;background:transparent;font-family:var(--serif);font-size:36px;cursor:pointer}
-.size-table-wrap{overflow-x:auto;margin-top:18px}
-.size-guide-modal table,.size-chart-block table{border-collapse:collapse;width:100%;font-size:13px}
-.size-guide-modal th,.size-guide-modal td,.size-chart-block th,.size-chart-block td{border-bottom:1px solid #cec3b3;text-align:left;padding:13px 10px;vertical-align:top}
-.size-guide-modal th,.size-chart-block th{text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:#825f20}
-.size-chart-compact .size-chart-figure{margin:0 0 12px;cursor:pointer;background:#fff}
-.size-chart-compact .size-chart-figure img{display:block;width:100%;max-height:220px;object-fit:contain;object-position:top;background:#fff}
-.size-chart-compact p{color:#675f55;line-height:1.65;font-size:13px;margin:0 0 14px}
-.size-chart-block h3{font-family:var(--serif);font-size:32px;line-height:.95;text-transform:uppercase;margin:0 0 16px}
-.size-chart-block h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:28px 0 8px;color:#825f20}
-.size-chart-block>p{color:#675f55;line-height:1.6;font-size:13px;margin:0 0 8px}
-.size-chart-figure{margin:0 0 8px;background:#090909;border:1px solid rgba(181,136,52,.28);overflow:hidden}
-.size-chart-figure img{display:block;width:100%;height:auto}
-.size-chart-figure figcaption{padding:10px 12px;background:#f4eee3;color:#6d655b;font-size:11px;letter-spacing:.04em}
-.size-chart-note{margin-top:18px;padding:12px 14px;background:#ead9a8;color:#3d3014;font-size:12px;line-height:1.6}
-.product-accordions .size-chart-block{border-top:0;padding-top:12px}
-.size-guide-body .size-chart-block{margin-top:8px;padding-top:8px;border-top:0}
-.size-guide-body .size-chart-block h3{display:none}
+.size-table-wrap{overflow-x:auto;margin-top:25px}
+.size-guide-modal table{border-collapse:collapse;width:100%;font-size:13px}
+.size-guide-modal th,.size-guide-modal td{border-bottom:1px solid #cec3b3;text-align:left;padding:13px 10px}
+.size-guide-modal th{text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:#825f20}
 .product-not-found{min-height:65vh;padding:100px 5vw;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .product-not-found h1{font-family:var(--serif);font-size:clamp(52px,8vw,100px);text-transform:uppercase;margin:0 0 20px}
 .product-not-found p{color:#686057;max-width:520px;line-height:1.7}
@@ -184,4 +171,78 @@
 
 @media(prefers-reduced-motion:reduce){
   .gallery-main img,.related-card,.related-image img{transition:none}
+}
+
+/* Original front/back artwork and the complete supplied chart stay uncropped. */
+.gallery-thumb img{object-fit:contain;background:#090909}
+.gallery-main img{object-fit:contain}
+.stock-status{color:#806321}
+.stock-status:before{background:#a67a28;box-shadow:none}
+.product-rating-link{color:#816020}
+.pricing-note{color:#796c59;font-size:11px;line-height:1.5;margin:12px 0 0}
+.empty-reviews{margin:0;font-family:var(--serif);font-size:27px;line-height:1.2;color:#514b43;padding:26px 0}
+.chart-full-link{display:inline-block;color:#80591e;text-decoration:underline;text-underline-offset:4px;margin:12px 0;font-size:12px}
+.product-accordions .chart-full-link{margin-left:14px}
+.size-guide-modal{width:min(980px,calc(100% - 32px));max-height:90vh;overflow:auto}
+.size-chart-image{display:block;width:100%;height:auto;max-width:100%;margin:20px auto;border:1px solid #d6ccbc;background:#fff}
+.size-guide-modal>p strong{color:#7d571b}
+.size-table-wrap{margin-top:14px}
+.size-guide-note{background:#ebe1d1;border-left:3px solid #ae7d27;padding:14px 16px;margin:18px 0 28px;color:#514b43}
+.size-guide-section{border-top:1px solid #cec3b3;padding:24px 0 26px}
+.size-guide-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:12px}
+.size-guide-section-head h3{font-family:var(--serif);font-size:28px;line-height:1;margin:0;font-weight:600;text-transform:uppercase}
+.size-guide-section-head span{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#7b6c58;text-align:right}
+.size-guide-modal table{min-width:690px;background:#f9f5ec}
+.size-guide-modal th,.size-guide-modal td{white-space:nowrap}
+.size-guide-modal th{background:#11100e;color:#e3c176;border-bottom:0}
+.size-guide-modal td:first-child{font-weight:700;color:#7e5b21}
+.size-table-caption{font-size:11px;color:#71685d;line-height:1.55;margin:12px 0 0}
+.size-guide-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin:0}
+.size-guide-steps div{padding:12px 0;border-bottom:1px solid #ddd3c5}
+.size-guide-steps dt{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#825f20;margin-bottom:4px}
+.size-guide-steps dd{font-size:12px;line-height:1.55;color:#655d53;margin:0}
+.chart-source{border-top:1px solid #cec3b3;padding-top:20px;margin-top:4px}
+.chart-source summary{cursor:pointer;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#80591e}
+.chart-source>p{font-size:12px;color:#71685d;line-height:1.5;margin:12px 0}
+.chart-source .size-chart-image{max-height:480px;object-fit:contain;object-position:top;background:#fff;overflow:auto}
+.chart-source .chart-full-link{margin-left:0}
+@media(max-width:480px){
+  .size-guide-modal{width:calc(100% - 18px);padding:32px 14px}
+  .size-guide-modal .chart-full-link{font-size:11px}
+  .stock-status{font-size:9px;text-align:right}
+  .pricing-note{font-size:10px}
+  .empty-reviews{font-size:23px}
+}
+@media(max-width:760px){
+  .size-guide-section-head{display:block}
+  .size-guide-section-head span{display:block;text-align:left;margin-top:7px;line-height:1.4}
+  .size-guide-section-head h3{font-size:25px}
+  .size-guide-steps{grid-template-columns:1fr}
+}
+
+/* On-model photography is primary. Supplier flats remain a small, opt-in
+   reference, and each chart focuses on this garment's measurements. */
+.gallery-main{aspect-ratio:2/3;max-height:760px;background:linear-gradient(135deg,#181510,#090909 62%,#1b140b)}
+.gallery-main img,.gallery-thumb img{object-fit:contain;object-position:center;background:#100e0b}
+.gallery-thumb{aspect-ratio:2/3;background:#100e0b}
+.product-price{font-size:clamp(36px,4vw,48px);color:#6e4d18;margin-bottom:10px}
+.product-add-button:hover,.product-add-button:focus-visible{background:#b58834;color:#090909;outline:2px solid #19120b;outline-offset:2px}
+.reference-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:18px;max-width:560px}
+.reference-grid a{display:block;min-width:0;background:#eee7d9;border:1px solid #cfc2ad;padding:8px;color:#715b3b}
+.reference-grid img{display:block;width:100%;height:135px;object-fit:contain;background:#e4dccb}
+.reference-grid span{display:block;font-size:10px;line-height:1.4;margin-top:7px}
+.reference-grid a:hover,.reference-grid a:focus-visible{border-color:#b58834}
+.size-guide-section[hidden]{display:none!important}
+.focused-chart table{min-width:0;width:100%}
+.focused-chart th,.focused-chart td{text-align:center}
+.focused-chart th:first-child,.focused-chart td:first-child{text-align:left}
+@media(max-width:760px){
+  .gallery-main{aspect-ratio:2/3;max-height:none}
+  .product-details{position:static}
+  .focused-chart table{min-width:460px}
+}
+@media(max-width:480px){
+  .gallery-main{aspect-ratio:2/3}
+  .gallery-thumb{flex:0 0 62px}
+  .reference-grid img{height:110px}
 }

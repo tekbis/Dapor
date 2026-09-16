@@ -8,7 +8,6 @@ const catalog = require("./catalog-data");
 
 const app = express();
 const PORT = Number(process.env.PORT) || 4242;
-const catalogById = new Map(catalog.map((product) => [Number(product.id), product]));
 const ordersFile = path.join(__dirname, "orders.json");
 
 function stripeClient() {
@@ -49,6 +48,25 @@ function recordOrder(session) {
   fs.writeFileSync(ordersFile, JSON.stringify(orders.slice(0, 200), null, 2));
 }
 
+function checkoutProduct(id) {
+  return catalog.find((item) => Number(item.id) === Number(id)) || null;
+}
+
+function colorNames(product) {
+  if (!product) return [];
+  if (Array.isArray(product.colors) && product.colors.length && typeof product.colors[0] === "object") {
+    return product.colors.map((item) => item.name);
+  }
+  return product.colors || [];
+}
+
+function imageUrl(product, origin) {
+  const src = product.image || product.img || "";
+  if (/^https?:\/\//i.test(src)) return src;
+  if (src.startsWith("/")) return `${origin}${src}`;
+  return src ? `${origin}/assets/${src}` : "";
+}
+
 app.post("/api/webhook", express.raw({ type: "application/json" }), (req, res) => {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!secret || secret.includes("your_webhook_secret")) {
@@ -70,8 +88,7 @@ app.post("/api/webhook", express.raw({ type: "application/json" }), (req, res) =
   res.json({ received: true });
 });
 
-app.use(express.json({ limit: "32kb" }));
-app.use(express.static(__dirname));
+app.use(express.json({ limit: "1mb" }));
 
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
@@ -85,22 +102,25 @@ app.post("/api/create-checkout-session", async (req, res) => {
     let subtotalCents = 0;
 
     for (const item of items) {
-      const product = catalogById.get(Number(item.id));
+      const product = checkoutProduct(item.id);
       const qty = Math.max(1, Math.min(10, Number(item.qty) || 0));
       if (!product || !qty) {
         return res.status(400).json({ error: "One of the items in your bag is no longer available." });
       }
-      if (item.size && !product.sizes.includes(item.size)) {
+      const sizes = product.sizes || [];
+      const colors = colorNames(product);
+      if (item.size && sizes.length && !sizes.includes(item.size)) {
         return res.status(400).json({ error: `Choose a valid size for ${product.title}.` });
       }
-      if (item.color && !product.colors.includes(item.color)) {
+      if (item.color && colors.length && !colors.includes(item.color)) {
         return res.status(400).json({ error: `Choose a valid color for ${product.title}.` });
       }
 
-      const unitAmount = Math.round(product.price * 100);
+      const unitAmount = Math.round(Number(product.price) * 100);
       subtotalCents += unitAmount * qty;
       const details = [item.color, item.size].filter(Boolean).join(" · ");
       const origin = originFrom(req);
+      const photo = imageUrl(product, origin);
       lineItems.push({
         quantity: qty,
         price_data: {
@@ -109,7 +129,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
           product_data: {
             name: product.title,
             description: details || product.slug,
-            images: [`${origin}/assets/${product.image}`],
+            images: photo ? [photo] : [],
             metadata: {
               product_id: String(product.id),
               size: item.size || "",
@@ -178,9 +198,20 @@ app.get("/api/checkout-session", async (req, res) => {
   }
 });
 
+app.get(["/products/:slug", "/products/:slug/"], (req, res, next) => {
+  const file = path.join(__dirname, "products", req.params.slug, "index.html");
+  if (fs.existsSync(file)) return res.sendFile(file);
+  next();
+});
+
+app.use(express.static(__dirname));
+
 app.use((error, req, res, next) => {
   if (error instanceof SyntaxError) {
-    return res.status(400).json({ error: "Invalid checkout request." });
+    return res.status(400).json({ error: "Invalid request." });
+  }
+  if (req.path.startsWith("/api/")) {
+    return res.status(error.status || 500).json({ error: error.message || "Request failed." });
   }
   next(error);
 });
