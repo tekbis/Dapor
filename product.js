@@ -75,7 +75,7 @@ function productMarkup(product) {
         </div>
 
         <div class="product-details">
-          <div class="product-meta"><span class="product-category">${escapeHTML(product.category)}</span><span class="stock-status">${escapeHTML(product.stock)}</span></div>
+          <div class="product-meta"><span class="product-category">${escapeHTML(product.category)}</span><span class="stock-status${product.comingSoon ? " coming-soon" : ""}">${escapeHTML(product.stock)}</span></div>
           <p class="eyebrow dark">${escapeHTML(product.edition)}</p>
           <h1 id="product-title">${escapeHTML(product.title)}</h1>
           <a class="product-rating-link" href="#product-reviews"><span></span><span class="rating-copy">Read reviews</span></a>
@@ -93,15 +93,15 @@ function productMarkup(product) {
               <div class="color-choices">${product.colors.map((item) => `<button class="color-choice" type="button" data-color="${escapeHTML(item.name)}" data-image="${item.image}" aria-pressed="false"><i style="--swatch:${item.value}"></i>${escapeHTML(item.name)}</button>`).join("")}</div>
             </fieldset>
 
-            <div class="purchase-row">
-              <div class="quantity-control" aria-label="Quantity selector">
+            <div class="purchase-row${product.comingSoon ? " coming-soon-row" : ""}">
+              ${product.comingSoon ? "" : `<div class="quantity-control" aria-label="Quantity selector">
                 <button type="button" class="quantity-minus" aria-label="Decrease quantity">−</button>
                 <input class="quantity-input" type="number" min="1" max="10" value="1" aria-label="Quantity">
                 <button type="button" class="quantity-plus" aria-label="Increase quantity">+</button>
-              </div>
-              <button class="product-add-button" type="button">Add to cart · ${money(product.price)}</button>
+              </div>`}
+              <button class="product-add-button${product.comingSoon ? " coming-soon" : ""}" type="button"${product.comingSoon ? " disabled" : ""}>${product.comingSoon ? "Coming soon" : `Add to cart · ${money(product.price)}`}</button>
             </div>
-            <p class="pricing-note">$120 per piece. Complimentary U.S. shipping on orders $150+.</p>
+            <p class="pricing-note">${product.comingSoon ? "This District piece is coming soon. The size guide remains available below." : "$120 per piece. Complimentary U.S. shipping on orders $150+."}</p>
             <p class="option-error" role="alert" aria-live="polite"></p>
           </div>
 
@@ -152,7 +152,7 @@ function productMarkup(product) {
 function relatedCard(product) {
   return `<a class="related-card" href="${product.url}" aria-label="View ${escapeHTML(product.title)}">
     <div class="related-image"><img src="${product.img}" alt="${escapeHTML(product.title)}" loading="lazy"></div>
-    <div><span>${escapeHTML(product.category)}</span><h3>${escapeHTML(product.title)}</h3><strong>${money(product.price)}</strong></div>
+    <div><span>${escapeHTML(product.category)}</span><h3>${escapeHTML(product.title)}</h3><strong>${money(product.price)}</strong>${product.comingSoon ? `<em class="coming-soon-label">Coming soon</em>` : ""}</div>
   </a>`;
 }
 
@@ -207,6 +207,8 @@ function bindProductOptions() {
       renderGallery();
     };
   });
+
+  if (currentProduct.comingSoon) return;
 
   const quantityInput = $(".quantity-input");
   const setQuantity = (value) => {

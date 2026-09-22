@@ -40,7 +40,9 @@ function productCard(product) {
         <h3><a href="${product.url}">${product.title}</a></h3>
         <p>${product.desc}</p>
         <div class="product-bottom"><span class="price">${money(product.price)}</span><span class="rating">New design</span></div>
-        <button class="add-to-cart" type="button" data-quick-add="${product.id}" aria-label="Add ${product.title} to cart">Add to cart</button>
+        ${product.comingSoon
+          ? `<button class="add-to-cart coming-soon" type="button" disabled aria-label="${product.title} is coming soon">Coming soon</button>`
+          : `<button class="add-to-cart" type="button" data-quick-add="${product.id}" aria-label="Add ${product.title} to cart">Add to cart</button>`}
       </div>
     </article>`;
 }

@@ -246,3 +246,27 @@
   .gallery-thumb{flex:0 0 62px}
   .reference-grid img{height:110px}
 }
+
+.stock-status.coming-soon{color:#8a6a28}
+.stock-status.coming-soon:before{background:#c4a056;box-shadow:0 0 0 4px rgba(196,160,86,.14)}
+.purchase-row.coming-soon-row{grid-template-columns:1fr}
+.product-add-button.coming-soon,
+.product-add-button.coming-soon:hover,
+.product-add-button.coming-soon:focus-visible,
+.product-add-button.coming-soon:disabled{
+  background:#090908;
+  color:#d4b06a;
+  transform:none;
+  outline:none;
+  cursor:default;
+  opacity:1;
+}
+.coming-soon-label{
+  display:block;
+  margin-top:7px;
+  font-size:10px;
+  font-style:normal;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#8a6a28;
+}

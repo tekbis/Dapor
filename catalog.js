@@ -44,7 +44,8 @@
     reviews: [],
     material: "Fabric composition and garment-care instructions have not yet been confirmed by DA’POR.",
     care: "Please follow the care label on the finished garment once confirmed.",
-    stock: "In stock — ready to ship",
+    comingSoon: true,
+    stock: "Coming soon",
     shipping: "Complimentary U.S. shipping on orders $150+. Orders are prepared within 1–2 business days. Unworn pieces may be returned within 30 days in their original condition.",
   };
 
