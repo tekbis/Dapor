@@ -62,7 +62,7 @@
       title: "District Heather Grey Zip Hoodie",
       desc: "Navy and red typography · zip-front layer",
       category: "Zip hoodies",
-      cat: "hoodies grey",
+      cat: "hoodies grey men",
       badge: "New artwork",
       img: GREY_MODEL,
       images: [
@@ -82,7 +82,7 @@
       title: "District Heather Grey Graphic Shorts",
       desc: "Matching 26 artwork · drawcord waist",
       category: "Graphic shorts",
-      cat: "shorts grey",
+      cat: "shorts grey men",
       img: GREY_MODEL,
       images: [
         frame(GREY_MODEL, "Full-length styled model wearing heather-grey DA’POR shorts with matching hoodie"),
@@ -101,7 +101,7 @@
       title: "District Onyx / Red Zip Hoodie",
       desc: "Black base · red-and-white District graphics",
       category: "Zip hoodies",
-      cat: "hoodies black red",
+      cat: "hoodies black red men",
       badge: "New artwork",
       img: RED_MODEL,
       images: [
@@ -121,7 +121,7 @@
       title: "District Onyx / Red Graphic Shorts",
       desc: "Eagle and 26 graphics · red accents",
       category: "Graphic shorts",
-      cat: "shorts black red",
+      cat: "shorts black red men",
       img: RED_MODEL,
       images: [
         frame(RED_MODEL, "Full-length styled model wearing onyx-red DA’POR graphic shorts"),
@@ -140,7 +140,7 @@
       title: "District Onyx / Turquoise Zip Hoodie",
       desc: "Gold lettering · turquoise crest details",
       category: "Zip hoodies",
-      cat: "hoodies black turquoise",
+      cat: "hoodies black turquoise men",
       badge: "New artwork",
       img: TEAL_MODEL,
       images: [
@@ -160,7 +160,7 @@
       title: "District Onyx / Turquoise Graphic Shorts",
       desc: "Turquoise eagle · gold 26 print",
       category: "Graphic shorts",
-      cat: "shorts black turquoise",
+      cat: "shorts black turquoise men",
       img: TEAL_MODEL,
       images: [
         frame(TEAL_MODEL, "Full-length styled model wearing onyx-turquoise DA’POR graphic shorts"),

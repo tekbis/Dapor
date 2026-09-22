@@ -90,6 +90,21 @@ app.post("/api/webhook", express.raw({ type: "application/json" }), (req, res) =
 
 app.use(express.json({ limit: "1mb" }));
 
+const newsletterFile = path.join(__dirname, "newsletter.json");
+
+app.post("/api/newsletter", (req, res) => {
+  const email = String(req.body?.email || "").trim().toLowerCase();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: "Enter a valid email." });
+  }
+  const list = fs.existsSync(newsletterFile) ? JSON.parse(fs.readFileSync(newsletterFile, "utf8") || "[]") : [];
+  if (!list.some((entry) => entry.email === email)) {
+    list.unshift({ email, created: new Date().toISOString() });
+    fs.writeFileSync(newsletterFile, JSON.stringify(list.slice(0, 2000), null, 2));
+  }
+  res.json({ ok: true });
+});
+
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
     const items = Array.isArray(req.body?.items) ? req.body.items : [];
@@ -202,6 +217,14 @@ app.get(["/products/:slug", "/products/:slug/"], (req, res, next) => {
   const file = path.join(__dirname, "products", req.params.slug, "index.html");
   if (fs.existsSync(file)) return res.sendFile(file);
   next();
+});
+
+["men", "women", "kids", "accessories"].forEach((slug) => {
+  app.get([`/${slug}`, `/${slug}/`], (req, res, next) => {
+    const file = path.join(__dirname, slug, "index.html");
+    if (fs.existsSync(file)) return res.sendFile(file);
+    next();
+  });
 });
 
 app.use(express.static(__dirname));

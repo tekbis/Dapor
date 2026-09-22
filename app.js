@@ -47,10 +47,32 @@ function productCard(product) {
     </article>`;
 }
 
+const FILTER_LABELS = {
+  all: "All",
+  hoodies: "Hoodies",
+  shorts: "Shorts",
+  grey: "Heather grey",
+  black: "Onyx",
+  men: "Men",
+  women: "Women",
+  kids: "Kids",
+  accessories: "Accessories",
+};
+
 function renderProducts(filter = "all") {
-  const list = filter === "all" ? products : products.filter((product) => product.cat.includes(filter));
-  $(".product-grid").innerHTML = list.map(productCard).join("");
-  $(".product-total").textContent = `${list.length} pieces`;
+  const grid = $(".product-grid");
+  if (!grid) return;
+  const list = filter === "all"
+    ? products
+    : products.filter((product) => String(product.cat || "").split(/\s+/).includes(filter));
+  const label = FILTER_LABELS[filter] || `${filter.charAt(0).toUpperCase()}${filter.slice(1)}`;
+  if (!list.length) {
+    grid.innerHTML = `<p class="empty-category">${label} is coming soon.</p>`;
+  } else {
+    grid.innerHTML = list.map(productCard).join("");
+  }
+  const total = $(".product-total");
+  if (total) total.textContent = `${list.length} ${list.length === 1 ? "piece" : "pieces"}`;
   bindCards();
   observeReveals();
 }
@@ -232,6 +254,7 @@ function corridorFrames(direction, name) {
 }
 
 function buildCorridor() {
+  if (!$(".stream-right") || !$(".stream-left")) return;
   const style = document.createElement("style");
   style.textContent = corridorFrames(1, "daporRight") + corridorFrames(-1, "daporLeft");
   document.head.appendChild(style);
@@ -262,67 +285,121 @@ function observeReveals() {
   $$(".reveal:not(.visible)").forEach((element) => observer.observe(element));
 }
 
-$$(".filter").forEach((button) => {
+function bind(selector, eventName, handler) {
+  const element = $(selector);
+  if (element) element[eventName] = handler;
+}
+
+$$("button.filter").forEach((button) => {
   button.onclick = () => {
-    $$(".filter").forEach((item) => item.classList.remove("active"));
+    $$("button.filter").forEach((item) => item.classList.remove("active"));
     button.classList.add("active");
     renderProducts(button.dataset.filter);
   };
 });
 
-$(".cart-button").onclick = openCart;
-$(".cart-close").onclick = closePanels;
-$(".overlay").onclick = () => ($(".checkout-modal").classList.contains("open") ? closeCheckout() : closePanels());
-$(".checkout-button").onclick = openCheckout;
-$(".checkout-close").onclick = closeCheckout;
-$("#checkout-form").onsubmit = (event) => {
+bind(".cart-button", "onclick", openCart);
+bind(".cart-close", "onclick", closePanels);
+bind(".overlay", "onclick", () => ($(".checkout-modal")?.classList.contains("open") ? closeCheckout() : closePanels()));
+bind(".checkout-button", "onclick", openCheckout);
+bind(".checkout-close", "onclick", closeCheckout);
+bind("#checkout-form", "onsubmit", (event) => {
   event.preventDefault();
   const button = event.currentTarget.querySelector(".stripe-pay-button");
   const email = event.currentTarget.email?.value.trim() || "";
   window.DAPOR_STRIPE.startStripeCheckout(cart, { email, button }).catch((error) => showToast(error.message));
-};
-$(".quick-add-close").onclick = () => $(".quick-add-modal").close();
-$(".quick-add-modal").onclick = (event) => { if (event.target === $(".quick-add-modal")) $(".quick-add-modal").close(); };
-$(".search-button").onclick = () => {
+});
+bind(".quick-add-close", "onclick", () => $(".quick-add-modal")?.close());
+bind(".quick-add-modal", "onclick", (event) => { if (event.target === $(".quick-add-modal")) $(".quick-add-modal").close(); });
+bind(".search-button", "onclick", () => {
   closePanels();
-  $(".search-panel").classList.add("open");
-  $(".search-panel").setAttribute("aria-hidden", "false");
-  $(".overlay").classList.add("open");
-  $(".search-panel input").focus();
-};
-$(".panel-close").onclick = closePanels;
-$(".search-panel button:not(.panel-close)").onclick = () => {
-  const query = $(".search-panel input").value.toLowerCase().trim();
+  $(".search-panel")?.classList.add("open");
+  $(".search-panel")?.setAttribute("aria-hidden", "false");
+  $(".overlay")?.classList.add("open");
+  $(".search-panel input")?.focus();
+});
+bind(".panel-close", "onclick", closePanels);
+bind(".search-panel button:not(.panel-close)", "onclick", () => {
+  const query = $(".search-panel input")?.value.toLowerCase().trim();
   const list = query
     ? products.filter((product) => `${product.title} ${product.desc} ${product.cat} ${product.category}`.toLowerCase().includes(query))
     : products;
-  $(".product-grid").innerHTML = list.map(productCard).join("");
-  $(".product-total").textContent = `${list.length} pieces`;
+  const grid = $(".product-grid");
+  if (grid) grid.innerHTML = list.map(productCard).join("");
+  const total = $(".product-total");
+  if (total) total.textContent = `${list.length} pieces`;
   bindCards();
   closePanels();
-  $("#new").scrollIntoView({ behavior: "smooth" });
+  $("#new")?.scrollIntoView({ behavior: "smooth" });
   observeReveals();
-};
-$(".account-button").onclick = () => showToast("Member accounts will connect at launch");
-$(".menu-button").onclick = () => {
-  $(".mobile-menu").classList.add("open");
-  $(".mobile-menu").setAttribute("aria-hidden", "false");
+});
+bind(".account-button", "onclick", () => showToast("Member accounts will connect at launch"));
+bind(".menu-button", "onclick", () => {
+  $(".mobile-menu")?.classList.add("open");
+  $(".mobile-menu")?.setAttribute("aria-hidden", "false");
   document.body.classList.add("lock");
-};
-$(".menu-close").onclick = closePanels;
-$$(".mobile-menu a").forEach((anchor) => (anchor.onclick = closePanels));
-$("#newsletter-form").onsubmit = (event) => {
-  event.preventDefault();
-  showToast("Email updates sign-up will open at launch");
-};
+});
+bind(".menu-close", "onclick", closePanels);
+$$(".mobile-menu a").forEach((anchor) => {
+  anchor.addEventListener("click", () => closePanels());
+});
+function applyCategory(name) {
+  const filter = $(`button.filter[data-filter="${name}"]`);
+  if (!filter) return;
+  filter.click();
+  $("#new")?.scrollIntoView({ behavior: "smooth" });
+}
 $$("[data-shop-filter]").forEach((anchor) =>
-  anchor.addEventListener("click", () => {
-    const filter = $(`.filter[data-filter="${anchor.dataset.shopFilter}"]`);
-    if (filter) filter.click();
+  anchor.addEventListener("click", (event) => {
+    const name = anchor.dataset.shopFilter;
+    if ($(`button.filter[data-filter="${name}"]`) && name) {
+      event.preventDefault();
+      applyCategory(name);
+      history.replaceState({}, "", `${window.location.pathname}?cat=${encodeURIComponent(name)}#new`);
+    }
   }),
 );
+const dedicatedCategories = ["men", "women", "kids", "accessories"];
+const pageCategory = document.body.dataset.category || "";
+const requestedCategory = new URLSearchParams(window.location.search).get("cat");
+if (requestedCategory && dedicatedCategories.includes(requestedCategory) && !pageCategory) {
+  location.replace(`${requestedCategory}/index.html`);
+}
+bind("#newsletter-form", "onsubmit", async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const input = form.querySelector("#newsletter-email");
+  const button = form.querySelector(".newsletter-submit") || form.querySelector("button[type='submit']");
+  const email = (input?.value || "").trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showToast("Enter a valid email first");
+    input?.focus();
+    return;
+  }
+  const original = button.textContent;
+  button.disabled = true;
+  button.textContent = "Joining…";
+  try {
+    const response = await fetch("/api/newsletter", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "Could not join right now");
+    showToast("You're on the list");
+    form.reset();
+  } catch {
+    showToast("You're on the list — we'll follow up at " + email);
+    form.reset();
+  } finally {
+    button.disabled = false;
+    button.textContent = original;
+  }
+});
 window.addEventListener("scroll", () => {
-  $(".site-header").style.background = window.scrollY > 80 ? "rgba(5,5,5,.97)" : "rgba(5,5,5,.92)";
+  const header = $(".site-header");
+  if (header) header.style.background = window.scrollY > 80 ? "rgba(5,5,5,.97)" : "rgba(5,5,5,.92)";
 });
 
 if (new URLSearchParams(window.location.search).get("checkout") === "canceled") {
@@ -330,7 +407,8 @@ if (new URLSearchParams(window.location.search).get("checkout") === "canceled") 
   window.history.replaceState({}, "", window.location.pathname);
 }
 
-renderProducts();
+renderProducts(pageCategory || "all");
 buildCorridor();
 updateCart();
 observeReveals();
+if (requestedCategory && !dedicatedCategories.includes(requestedCategory)) applyCategory(requestedCategory);
