@@ -32,6 +32,9 @@
       if (!response.ok || !data.url) {
         throw new Error(data.error || "Stripe checkout could not start.");
       }
+      if (typeof data.url !== "string" || !/^https:\/\/checkout\.stripe\.com\//i.test(data.url)) {
+        throw new Error("Stripe checkout could not start.");
+      }
       window.location.href = data.url;
     } catch (error) {
       if (button) {

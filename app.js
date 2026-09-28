@@ -29,20 +29,20 @@ function money(value) {
 
 function productCard(product) {
   return `
-    <article class="product-card reveal" data-cat="${product.cat}" data-url="${product.url}" tabindex="0" aria-label="View ${product.title}">
+    <article class="product-card reveal" data-cat="${escapeHTML(product.cat)}" data-url="${escapeHTML(product.url)}" tabindex="0" aria-label="View ${escapeHTML(product.title)}">
       <div class="product-image">
-        ${product.badge ? `<span class="badge">${product.badge}</span>` : ""}
-        <button class="wishlist" aria-label="Add ${product.title} to wishlist" type="button">♡</button>
-        <a href="${product.url}" aria-label="View ${product.title}"><img src="${product.img}" alt="${product.title}" loading="lazy"></a>
+        ${product.badge ? `<span class="badge">${escapeHTML(product.badge)}</span>` : ""}
+        <button class="wishlist" aria-label="Add ${escapeHTML(product.title)} to wishlist" type="button">♡</button>
+        <a href="${escapeHTML(product.url)}" aria-label="View ${escapeHTML(product.title)}"><img src="${escapeHTML(product.img)}" alt="${escapeHTML(product.title)}" loading="lazy"></a>
       </div>
       <div class="product-info">
-        <span class="product-kicker">${product.edition}</span>
-        <h3><a href="${product.url}">${product.title}</a></h3>
-        <p>${product.desc}</p>
+        <span class="product-kicker">${escapeHTML(product.edition)}</span>
+        <h3><a href="${escapeHTML(product.url)}">${escapeHTML(product.title)}</a></h3>
+        <p>${escapeHTML(product.desc)}</p>
         <div class="product-bottom"><span class="price">${money(product.price)}</span><span class="rating">New design</span></div>
         ${product.comingSoon
-          ? `<button class="add-to-cart coming-soon" type="button" disabled aria-label="${product.title} is coming soon">Coming soon</button>`
-          : `<button class="add-to-cart" type="button" data-quick-add="${product.id}" aria-label="Add ${product.title} to cart">Add to cart</button>`}
+          ? `<button class="add-to-cart coming-soon" type="button" disabled aria-label="${escapeHTML(product.title)} is coming soon">Coming soon</button>`
+          : `<button class="add-to-cart" type="button" data-quick-add="${Number(product.id)}" aria-label="Add ${escapeHTML(product.title)} to cart">Add to cart</button>`}
       </div>
     </article>`;
 }
@@ -114,7 +114,7 @@ function openQuickAdd(product) {
     <div class="quick-add-details"><p class="eyebrow dark">${escapeHTML(product.edition)}</p><h2 id="quick-add-title">${escapeHTML(product.title)}</h2><strong>${money(product.price)}</strong><p>${escapeHTML(product.desc)}</p>
       <fieldset><legend>Choose size *</legend><div class="quick-add-options">${product.sizes.map((size) => `<button type="button" data-quick-size="${escapeHTML(size)}" aria-pressed="false">${escapeHTML(size)}</button>`).join("")}</div></fieldset>
       <fieldset><legend>Choose color *</legend><div class="quick-add-options">${product.colors.map((color) => `<button type="button" data-quick-color="${escapeHTML(color.name)}" aria-pressed="false"><i style="--swatch:${escapeHTML(color.value)}"></i>${escapeHTML(color.name)}</button>`).join("")}</div></fieldset>
-      <p class="quick-add-error" role="alert" aria-live="polite"></p><button type="button" class="quick-add-submit button gold">Add to cart · ${money(product.price)}</button><a class="quick-add-link" href="${product.url}">View full details and size guide ↗</a>
+      <p class="quick-add-error" role="alert" aria-live="polite"></p><button type="button" class="quick-add-submit button gold">Add to cart · ${money(product.price)}</button><a class="quick-add-link" href="${escapeHTML(product.url)}">View full details and size guide ↗</a>
     </div></div>`;
   let size = "";
   let color = "";
@@ -161,9 +161,9 @@ function updateCart() {
   wrap.innerHTML = cart
     .map(
       (item, index) => `<div class="cart-line">
-        <a href="${item.url || `/products/${item.slug}/`}"><img src="${item.img}" alt="${item.title}"></a>
-        <div><span class="product-kicker">Qty ${item.qty}</span><h3><a href="${item.url || `/products/${item.slug}/`}">${item.title}</a></h3>
-        <p>${[item.color, item.size].filter(Boolean).join(" · ") || item.desc}</p><button data-remove="${index}" type="button">Remove</button></div>
+        <a href="${escapeHTML(item.url || `/products/${item.slug}/`)}"><img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.title)}"></a>
+        <div><span class="product-kicker">Qty ${item.qty}</span><h3><a href="${escapeHTML(item.url || `/products/${item.slug}/`)}">${escapeHTML(item.title)}</a></h3>
+        <p>${escapeHTML([item.color, item.size].filter(Boolean).join(" · ") || item.desc)}</p><button data-remove="${index}" type="button">Remove</button></div>
         <strong>${Number.isFinite(item.price) ? money(item.price * item.qty) : money(null)}</strong>
       </div>`,
     )
@@ -206,8 +206,8 @@ function renderCheckoutItems() {
   $(".checkout-items").innerHTML = cart
     .map(
       (item) => `<div class="checkout-line">
-        <img src="${item.img}" alt="${item.title}">
-        <span>${item.qty}× ${item.title}<br>${[item.color, item.size].filter(Boolean).join(" · ")}</span>
+        <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.title)}">
+        <span>${item.qty}× ${escapeHTML(item.title)}<br>${escapeHTML([item.color, item.size].filter(Boolean).join(" · "))}</span>
         <strong>${money(item.price * item.qty)}</strong>
       </div>`,
     )

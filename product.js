@@ -150,8 +150,8 @@ function productMarkup(product) {
 }
 
 function relatedCard(product) {
-  return `<a class="related-card" href="${product.url}" aria-label="View ${escapeHTML(product.title)}">
-    <div class="related-image"><img src="${product.img}" alt="${escapeHTML(product.title)}" loading="lazy"></div>
+  return `<a class="related-card" href="${escapeHTML(product.url)}" aria-label="View ${escapeHTML(product.title)}">
+    <div class="related-image"><img src="${escapeHTML(product.img)}" alt="${escapeHTML(product.title)}" loading="lazy"></div>
     <div><span>${escapeHTML(product.category)}</span><h3>${escapeHTML(product.title)}</h3><strong>${money(product.price)}</strong>${product.comingSoon ? `<em class="coming-soon-label">Coming soon</em>` : ""}</div>
   </a>`;
 }
@@ -271,7 +271,13 @@ function storedReviews() {
 }
 
 function renderReviews() {
-  const reviews = [...storedReviews(), ...currentProduct.reviews];
+  const reviews = [...storedReviews(), ...currentProduct.reviews].map((review) => ({
+    ...review,
+    rating: Math.min(5, Math.max(1, Math.round(Number(review.rating) || 0))),
+    name: String(review.name || "").slice(0, 60),
+    text: String(review.text || "").slice(0, 800),
+    date: String(review.date || "").slice(0, 40),
+  }));
   const average = reviews.length
     ? reviews.reduce((sum, review) => sum + Number(review.rating), 0) / reviews.length
     : null;
@@ -297,9 +303,9 @@ function bindReviewForm() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const review = {
-      name: String(data.get("name") || "").trim(),
-      rating: Number(data.get("rating")),
-      text: String(data.get("review") || "").trim(),
+      name: String(data.get("name") || "").trim().slice(0, 60),
+      rating: Math.min(5, Math.max(1, Math.round(Number(data.get("rating")) || 0))),
+      text: String(data.get("review") || "").trim().slice(0, 800),
       date: "Submitted today",
     };
     if (!review.name || !review.text || !review.rating) return;
@@ -413,7 +419,7 @@ function runSearch() {
     ? products.filter((product) => `${product.title} ${product.desc} ${product.category}`.toLowerCase().includes(query))
     : products.slice(0, 4);
   $(".search-results").innerHTML = matches.length
-    ? matches.slice(0, 8).map((product) => `<a class="search-result" href="${product.url}"><img src="${product.img}" alt=""><span><strong>${escapeHTML(product.title)}</strong><br>${money(product.price)}</span></a>`).join("")
+    ? matches.slice(0, 8).map((product) => `<a class="search-result" href="${escapeHTML(product.url)}"><img src="${escapeHTML(product.img)}" alt=""><span><strong>${escapeHTML(product.title)}</strong><br>${money(product.price)}</span></a>`).join("")
     : `<p>No pieces match “${escapeHTML(query)}”.</p>`;
 }
 
