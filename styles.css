@@ -582,7 +582,7 @@ footer a.footer-credit-by{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:6px;
+  gap:7px;
   position:absolute;
   left:0;
   right:0;
@@ -590,7 +590,8 @@ footer a.footer-credit-by{
   bottom:0;
   margin:auto;
   width:max-content;
-  height:18px;
+  height:auto;
+  overflow:visible;
   white-space:nowrap;
   line-height:1;
   font-size:12px;
@@ -607,8 +608,8 @@ footer a.footer-credit-by:focus-visible span{
   font-size:12px;
   font-weight:400;
   color:#8d867c;
-  line-height:18px;
-  height:18px;
+  line-height:1;
+  height:auto;
   display:flex;
   align-items:center;
 }
@@ -618,15 +619,14 @@ footer a.footer-credit-by:focus-visible span{
   text-align:right;
 }
 footer .footer-credit img{
-  width:96px;
-  height:13px;
-  object-fit:cover;
-  object-position:center 48%;
+  width:auto;
+  height:14px;
+  object-fit:contain;
+  object-position:center;
   mix-blend-mode:screen !important;
-  filter:contrast(1.85);
   flex:0 0 auto;
   display:block;
-  margin-left:-14px;
+  margin:0;
   position:relative;
   top:-1px;
 }
