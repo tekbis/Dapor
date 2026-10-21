@@ -635,19 +635,25 @@ footer .footer-credit img{
     grid-template-columns:1fr;
     justify-items:center;
     text-align:center;
-    gap:10px;
+    gap:12px;
+    padding:18px 8px 4px;
   }
-  .footer-credit-by{
+  .footer-credit-by,
+  footer a.footer-credit-by{
     position:static;
     margin:0 auto;
     left:auto;
     right:auto;
     top:auto;
     bottom:auto;
+    height:auto;
+    width:auto;
+    max-width:100%;
   }
   .footer-credit > p:first-child,
   .footer-credit > p:last-child{
     justify-self:center;
     text-align:center;
+    grid-column:1;
   }
 }
